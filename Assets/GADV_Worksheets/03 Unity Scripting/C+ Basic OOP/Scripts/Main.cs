@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Main : MonoBehaviour
@@ -69,6 +71,52 @@ public class player
 public class TreasureChest { 
     public void AncientChest()
     {
-
+        Debug.Log("You unlock the ancient chest with an ancient key.");
+    }
+    public void MagicChest()
+    {
+        Debug.Log("You cast a spell to unlock the magic chest.");
+    }
+    public void Unlock(string var)
+    {
+        Debug.Log("You hear something rattle inside the chest.");
+        if (var == "magicchest") {
+            MagicChest();
+        }
+        else if (var == "ancientchest")
+        {
+           AncientChest();
+        }
+    }
+    public void Unlock(bool var)
+    {
+        if (var == true)
+        {
+            Debug.Log("Unlock Chest");
+        }
+        else
+        {
+            Debug.Log("Shake Chest");
+        }
     }
 };
+
+public class Explodable : MonoBehaviour
+{
+    public void Explode()
+    {
+        Debug.Log("Boom!");
+        Destroy(gameObject);
+    }
+}
+
+public class Item : MonoBehaviour
+{
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<Explodable>()?.Explode();
+        }
+    }
+}
