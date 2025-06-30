@@ -17,6 +17,15 @@ public class Main : MonoBehaviour
         
     }
 }
+public class ScoreTracker
+{
+    private int score;
+
+    private void ResetScore()
+    {
+        score = 0;
+    }
+}
 public class projectile
 {
     private float speed = 1.0f;
@@ -38,5 +47,28 @@ public class projectile
         {
             AutoFire();
         }
+    }
+};
+public class player
+{
+    private int health = 100;
+    private void TakeDamage(int amount)
+    {
+        health -= amount;
+    }
+    private void GetHealth(int amount)
+    {
+        health += amount;
+    }
+    public void startinghealth()
+    {
+        health = 50;
+    }
+};
+
+public class TreasureChest { 
+    public void AncientChest()
+    {
+
     }
 };
